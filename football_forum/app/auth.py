@@ -26,7 +26,6 @@ def register():
         new_user = User(
             username=username,
             email=email,
-            # Use pbkdf2:sha256 or omit method for default
             password=generate_password_hash(password, method='pbkdf2:sha256')
         )
         db.session.add(new_user)
