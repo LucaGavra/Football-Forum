@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>New Post for {{ team.name }}</h2>
+
+<form method="POST" action="{{ url_for('forum.new_post', team_id=team.id) }}">
+  <label for="title">Title:</label>
+  <input type="text" name="title" required />
+
+  <label for="content">Content:</label>
+  <textarea name="content" rows="5" required></textarea>
+
+  <button type="submit">Create Post</button>
+</form>
+{% endblock %}
+
