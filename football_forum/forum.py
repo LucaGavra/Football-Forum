@@ -56,12 +56,11 @@ def post_detail(team_id, post_id):
     team = Team.query.get_or_404(team_id)
     post = Post.query.get_or_404(post_id)
 
-    # Verify the post is actually in this team
+
     if post.team_id != team.id:
         flash('This post does not belong to this team.', 'error')
         return redirect(url_for('forum.team_posts', team_id=team.id))
 
-    # Handle new comment submission (POST)
     if request.method == 'POST':
         if not current_user.is_authenticated:
             flash('You must be logged in to comment.', 'error')
@@ -83,7 +82,6 @@ def post_detail(team_id, post_id):
 
         return redirect(url_for('forum.post_detail', team_id=team.id, post_id=post.id))
 
-    # GET: Render the post detail page
     comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.timestamp.asc()).all()
     return render_template('post_detail.html', team=team, post=post, comments=comments)
 
@@ -97,14 +95,13 @@ def upvote_post(team_id, post_id):
     """
     post = Post.query.get_or_404(post_id)
 
-    # Ensure the user hasn't already upvoted
     existing_vote = PostVote.query.filter_by(user_id=current_user.id, post_id=post.id).first()
     if existing_vote:
         flash('You have already upvoted this post.', 'info')
         return redirect(url_for('forum.post_detail', team_id=team_id, post_id=post_id))
 
     vote = PostVote(
-        value=1,  # Upvote
+        value=1,  
         user_id=current_user.id,
         post_id=post.id
     )
@@ -123,12 +120,10 @@ def upvote_comment(team_id, post_id, comment_id):
     """
     comment = Comment.query.get_or_404(comment_id)
 
-    # Make sure the comment belongs to this post, which belongs to the correct team
     if comment.post_id != post_id:
         flash('This comment does not belong to this post.', 'error')
         return redirect(url_for('forum.post_detail', team_id=team_id, post_id=post_id))
 
-    # Check if the user already upvoted
     existing_vote = CommentVote.query.filter_by(user_id=current_user.id, comment_id=comment.id).first()
     if existing_vote:
         flash('You have already upvoted this comment.', 'info')
