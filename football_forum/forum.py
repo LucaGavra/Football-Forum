@@ -6,14 +6,12 @@ forum = Blueprint('forum', __name__, url_prefix='/teams')
 
 @forum.route('/')
 def list_teams():
-    """Show all available teams (subforums)."""
     teams = Team.query.all()
     return render_template('teams.html', teams=teams)
 
 
 @forum.route('/<int:team_id>')
 def team_posts(team_id):
-    """Display all posts under a specific team (subforum)."""
     team = Team.query.get_or_404(team_id)
     posts = Post.query.filter_by(team_id=team_id).order_by(Post.timestamp.desc()).all()
     return render_template('team_posts.html', team=team, posts=posts)
@@ -22,7 +20,6 @@ def team_posts(team_id):
 @forum.route('/<int:team_id>/post/new', methods=['GET', 'POST'])
 @login_required
 def new_post(team_id):
-    """Create a new post within a specific team."""
     team = Team.query.get_or_404(team_id)
 
     if request.method == 'POST':
@@ -50,9 +47,6 @@ def new_post(team_id):
 
 @forum.route('/<int:team_id>/post/<int:post_id>', methods=['GET', 'POST'])
 def post_detail(team_id, post_id):
-    """
-    View a single post within a specific team, and handle new comments.
-    """
     team = Team.query.get_or_404(team_id)
     post = Post.query.get_or_404(post_id)
 
@@ -89,10 +83,7 @@ def post_detail(team_id, post_id):
 @forum.route('/<int:team_id>/post/<int:post_id>/upvote', methods=['POST'])
 @login_required
 def upvote_post(team_id, post_id):
-    """
-    Handle upvoting a post. We set 'value=1' for an upvote.
-    If you want to allow toggling or removing votes, add logic for that here.
-    """
+    
     post = Post.query.get_or_404(post_id)
 
     existing_vote = PostVote.query.filter_by(user_id=current_user.id, post_id=post.id).first()
@@ -115,9 +106,7 @@ def upvote_post(team_id, post_id):
 @forum.route('/<int:team_id>/post/<int:post_id>/comment/<int:comment_id>/upvote', methods=['POST'])
 @login_required
 def upvote_comment(team_id, post_id, comment_id):
-    """
-    Handle upvoting a comment. Set 'value=1' for an upvote.
-    """
+    
     comment = Comment.query.get_or_404(comment_id)
 
     if comment.post_id != post_id:
