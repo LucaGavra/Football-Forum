@@ -23,6 +23,7 @@ flask db upgrade
 flask run
 ```
 To add teams manually:
+```
 from app import create_app, db
 from app.models import Team
 
