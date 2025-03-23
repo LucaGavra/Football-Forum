@@ -8,7 +8,6 @@
   <strong>Score:</strong> {{ post.vote_score }}
 </p>
 
-<!-- Upvote the post if user is authenticated -->
 {% if current_user.is_authenticated %}
   <form method="POST" action="{{ url_for('forum.upvote_post', team_id=team.id, post_id=post.id) }}">
     <button type="submit" class="upvote-btn">Upvote Post</button>
@@ -31,7 +30,6 @@
     <p>Score: {{ comment.vote_score }}</p>
 
     {% if current_user.is_authenticated %}
-      <!-- Upvote Comment Button -->
       <form method="POST"
             action="{{ url_for('forum.upvote_comment', team_id=team.id, post_id=post.id, comment_id=comment.id) }}">
         <button type="submit" class="upvote-btn">Upvote Comment</button>
@@ -45,7 +43,6 @@
 {% endfor %}
 
 <hr>
-<!-- New comment form -->
 {% if current_user.is_authenticated %}
   <form method="POST" action="">
     <label for="comment_content">Add a Comment:</label><br>
