@@ -5,7 +5,6 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    # Public homepage
     return render_template('index.html')
 
 @main.route('/dashboard')
