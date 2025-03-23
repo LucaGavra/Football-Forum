@@ -1,15 +1,13 @@
-/* app/static/css/style.css */
 
-/* Define color variables for black & light-blue scheme */
 :root {
-    --background-color: #000000;  /* Pure black for body */
-    --primary-color: #4F9ED8;     /* Light blue for nav buttons, etc. */
-    --accent-color: #AEE4FF;      /* Lighter blue for highlights */
-    --text-color: #FFFFFF;        /* White text on black */
-    --container-bg: #111111;      /* Slightly lighter black for containers */
+    --background-color: #000000;  
+    --primary-color: #4F9ED8;     
+    --accent-color: #AEE4FF;      
+    --text-color: #FFFFFF;        
+    --container-bg: #111111;      
 }
 
-/* Global reset & font */
+
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +21,7 @@ body {
     line-height: 1.6;
 }
 
-/* Links (default state) */
+
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -32,7 +30,7 @@ a:hover {
     color: var(--primary-color);
 }
 
-/* Navigation bar */
+
 nav {
     background-color: var(--primary-color);
     display: flex;
@@ -49,13 +47,13 @@ nav a:hover {
     color: var(--accent-color);
 }
 
-/* Horizontal rule styling */
+
 hr {
     border: none;
     border-top: 1px solid var(--accent-color);
 }
 
-/* Container styling */
+
 .container {
     width: 90%;
     max-width: 1000px;
@@ -65,7 +63,7 @@ hr {
     border-radius: 8px;
 }
 
-/* Flash messages */
+
 .flash {
     margin: 1rem 0;
     padding: 0.75rem 1rem;
@@ -81,13 +79,11 @@ hr {
     background-color: #004466;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5 {
     color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
-/* Form styling */
 form {
     display: flex;
     flex-direction: column;
@@ -105,11 +101,11 @@ form textarea {
     padding: 0.5rem;
     border: 1px solid var(--primary-color);
     border-radius: 4px;
-    background-color: #222222; /* Slightly lighter black */
+    background-color: #222222; 
     color: var(--text-color);
 }
 
-/* Generic button styling */
+
 form button {
     background-color: var(--primary-color);
     border: none;
@@ -120,14 +116,12 @@ form button {
     font-weight: bold;
     text-transform: uppercase;
 
-    /* Hover transition */
     transition: background-color 0.3s ease;
 }
 form button:hover {
     background-color: var(--accent-color);
 }
 
-/* Make upvote buttons smaller */
 .upvote-btn {
     padding: 0.4rem 0.6rem;
     font-size: 0.85rem;
@@ -136,7 +130,6 @@ form button:hover {
     margin-top: 0.5rem;
 }
 
-/* Lists (e.g., teams/posts) */
 ul {
     list-style: none;
     padding: 0;
@@ -145,7 +138,6 @@ li {
     margin: 0.5rem 0;
 }
 
-/* Utility classes */
 .center {
     text-align: center;
 }
